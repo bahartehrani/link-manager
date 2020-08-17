@@ -13,7 +13,7 @@ struct ContentView: View {
     @ObservedObject var foldersViewModel = FoldersViewModel()
     
     @State var showFolderView = false
-    @State var selectedFolder : Folder = Folder(name: "")
+    @State var selectedFolder : Folder = Folder(name: "", links: [])
     
     var body : some View {
         
@@ -22,7 +22,7 @@ struct ContentView: View {
                 MainView(showFolderView: self.$showFolderView, uid: self.$foldersViewModel.uid, folders: self.$foldersViewModel.folders, selectedFolder: self.$selectedFolder)
             }
             else {
-                FolderView(showFolderView: self.$showFolderView, selectedFolder: self.$selectedFolder)
+                FolderView(showFolderView: self.$showFolderView, selectedFolder: self.$selectedFolder, uid: self.$foldersViewModel.uid, folders: self.$foldersViewModel.folders)
             }
         }.onAppear() {
             

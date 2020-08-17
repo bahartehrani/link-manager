@@ -15,7 +15,7 @@ struct Folder : Hashable, Identifiable {
     var id = UUID()
     var name : String
     
-    var links : [Link] = []
+    var links : [Link]
     
     static func toStringDict(folders: [Folder]) -> [String : [String]] {
         var dict : [String : [String]] = [:]
@@ -44,7 +44,7 @@ struct Link : Hashable, Identifiable {
     
     func toString() -> String {
         
-        return name + link
+        return name + "," + link
     }
     
 }

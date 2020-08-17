@@ -11,14 +11,38 @@ struct FolderView: View {
     
     @Binding var showFolderView : Bool
     @Binding var selectedFolder : Folder
+    @State var showAddLink = false
+    
+    @State var newLinkName : String = ""
+    @State var newLinkLink : String = ""
+    
+    @Binding var uid : String
+    @Binding var folders : [Folder]
     
     var body: some View {
         VStack {
             
-            Text("Back")
-                .onTapGesture {
-                    self.showFolderView = false
-            }
+            HStack {
+                Image(systemName: "arrowshape.turn.up.left")
+                    .font(.system(size: 24))
+                    .onTapGesture {
+                        withAnimation {
+                            self.showFolderView = false
+                        }
+                }
+                
+                Spacer()
+                
+                
+                Image(systemName: "plus.circle")
+                    .font(.system(size: 24))
+                    .onTapGesture(perform: {
+                        self.showAddLink.toggle()
+                    }
+                    )
+                
+            }.padding(.vertical,24)
+            .padding(.horizontal,36)
             
             List(selectedFolder.links) { link in
                 VStack {
@@ -27,7 +51,7 @@ struct FolderView: View {
                     Text(link.link)
                 }
             }
-        }
+        }.textFieldAlertMultiLine(isShowing: self.$showAddLink, textName: self.$newLinkName, textLink: self.$newLinkLink, selectedFolder: self.$selectedFolder, uid: self.$uid, folders: self.$folders)
     }
 }
 
