@@ -1,5 +1,5 @@
 //
-//  UIGrid.swift
+//  UIGrid.swift + TextFieldAlert (StackOverflow)
 //  Grid iOS 13 Demo
 //
 //  Created by Karan Pal on 30/06/20.
@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct UIGrid<Content: View, T: Hashable>: View {
     
@@ -95,6 +96,11 @@ struct TextFieldAlert<Presenting>: View where Presenting: View {
                                     self.title = "Enter a folder name not already taken..."
                                 } else {
                                     self.folders.append(Folder(name: self.text))
+                                    Firestore.firestore().collection("users").document(uid).setData([
+                                        "folders" : uid
+                                    ])
+                                    
+                                    
                                     self.isShowing.toggle()
                                 }
                             }

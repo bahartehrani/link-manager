@@ -15,4 +15,17 @@ struct Folder : Hashable {
     var id = UUID()
     var name : String
     
+    var links : [Link] = []
+    
+}
+
+struct Link : Hashable {
+    static func == (lhs: Link, rhs: Link) -> Bool {
+        return lhs.link == rhs.link
+    }
+    
+    var id = UUID()
+    var name : String
+    var link : String
+    
 }
