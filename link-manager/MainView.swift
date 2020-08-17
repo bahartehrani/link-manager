@@ -14,7 +14,7 @@ struct MainView : View {
     @State var createFolderPopUp = false
     
     @Binding var showFolderView : Bool
-    @State var uid : String
+    @Binding var uid : String
     @Binding var folders : [Folder]
     @Binding var selectedFolder : Folder
     
@@ -75,7 +75,7 @@ struct MainView : View {
             
         }
             
-            .textFieldAlert(isShowing: self.$createFolderPopUp, text: self.$newFolderName, folders: self.$folders, uid: self.uid)
+            .textFieldAlert(isShowing: self.$createFolderPopUp, text: self.$newFolderName, folders: self.$folders, uid: self.$uid)
         
     }
     

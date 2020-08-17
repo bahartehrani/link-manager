@@ -19,7 +19,7 @@ struct ContentView: View {
         
         Group {
             if !self.showFolderView {
-                MainView(showFolderView: self.$showFolderView, uid: self .foldersViewModel.uid, folders: self.$foldersViewModel.folders, selectedFolder: self.$selectedFolder)
+                MainView(showFolderView: self.$showFolderView, uid: self.$foldersViewModel.uid, folders: self.$foldersViewModel.folders, selectedFolder: self.$selectedFolder)
             }
             else {
                 FolderView(showFolderView: self.$showFolderView, selectedFolder: self.$selectedFolder)
@@ -27,6 +27,7 @@ struct ContentView: View {
         }.onAppear() {
             
             self.foldersViewModel.fetchData()
+            print(self.foldersViewModel.uid)
             
             print("appeared")
         }

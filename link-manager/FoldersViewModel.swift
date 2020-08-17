@@ -38,6 +38,8 @@ class FoldersViewModel: ObservableObject {
                             ],merge:true)
                         }
                         
+                        self.folders = []
+                        
                         for (fName,folderLinks) in directFolderData {
                             
                             var folderClassLinks : [Link] = []

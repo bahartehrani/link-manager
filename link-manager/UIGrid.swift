@@ -65,7 +65,7 @@ struct TextFieldAlert<Presenting>: View where Presenting: View {
     let presenting: Presenting
     @State var title: String = "Enter a folder name..."
     @Binding var folders: [Folder]
-    @State var uid : String
+    @Binding var uid : String
 
     var body: some View {
         GeometryReader { (deviceSize: GeometryProxy) in
@@ -129,7 +129,7 @@ extension View {
 
     func textFieldAlert(isShowing: Binding<Bool>,
                         text: Binding<String>,
-                        folders: Binding<[Folder]>, uid: String) -> some View {
+                        folders: Binding<[Folder]>, uid: Binding<String>) -> some View {
         TextFieldAlert(isShowing: isShowing,
                        text: text,
                        presenting: self,
