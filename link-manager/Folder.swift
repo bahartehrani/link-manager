@@ -17,6 +17,20 @@ struct Folder : Hashable {
     
     var links : [Link] = []
     
+    static func toStringDict(folders: [Folder]) -> [String : [String]] {
+        var dict : [String : [String]] = [:]
+        
+        for folder in folders {
+            var links : [String] = []
+            for link in folder.links {
+                links.append(link.toString())
+            }
+            dict[folder.name] = links
+        }
+        
+        return dict
+    }
+    
 }
 
 struct Link : Hashable {
@@ -27,5 +41,10 @@ struct Link : Hashable {
     var id = UUID()
     var name : String
     var link : String
+    
+    func toString() -> String {
+        
+        return name + link
+    }
     
 }

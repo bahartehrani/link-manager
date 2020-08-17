@@ -11,9 +11,10 @@ import Firebase
 struct ContentView: View {
     
     @State var createFolderPopUp = false
-    //@State var folders : [Folder] = []
+    @ObservedObject var foldersViewModel = FoldersViewModel()
+    @State var folders : [Folder] = []
     
-    @State var folders : [Folder] = [Folder(name: "test1"),Folder(name: "test2"),Folder(name: "test3"),Folder(name: "test4")]
+    //@State var folders : [Folder] = [Folder(name: "test1"),Folder(name: "test2"),Folder(name: "test3"),Folder(name: "test4")]
     
     @State var newFolderName : String = ""
     @State var didSaveNewFolder : Bool = false
@@ -37,7 +38,7 @@ struct ContentView: View {
             
             ScrollView(.vertical) {
                 
-                UIGrid(columns: 2, list: folders) { folder in
+                UIGrid(columns: 2, list: self.foldersViewModel.folders) { folder in
                     
                     Image(systemName: "folder")
                         .resizable()
@@ -50,10 +51,13 @@ struct ContentView: View {
                         .padding(.vertical,24)
                         
                 }
-                
+                    
             }.blur(radius: self.createFolderPopUp ? 16 : 0)
         }
-        .textFieldAlert(isShowing: self.$createFolderPopUp, text: self.$newFolderName, folders: self.$folders)
+            .onAppear() {
+                self.foldersViewModel.fetchData()
+            }
+        .textFieldAlert(isShowing: self.$createFolderPopUp, text: self.$newFolderName, folders: self.$folders, uid: self.foldersViewModel.uid)
         
     }
 }

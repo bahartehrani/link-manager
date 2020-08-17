@@ -65,6 +65,7 @@ struct TextFieldAlert<Presenting>: View where Presenting: View {
     let presenting: Presenting
     @State var title: String = "Enter a folder name..."
     @Binding var folders: [Folder]
+    @State var uid : String
 
     var body: some View {
         GeometryReader { (deviceSize: GeometryProxy) in
@@ -96,9 +97,9 @@ struct TextFieldAlert<Presenting>: View where Presenting: View {
                                     self.title = "Enter a folder name not already taken..."
                                 } else {
                                     self.folders.append(Folder(name: self.text))
-                                    Firestore.firestore().collection("users").document(uid).setData([
-                                        "folders" : uid
-                                    ])
+                                    Firestore.firestore().collection("users").document(self.uid).setData([
+                                        "folders" : Folder.toStringDict(folders: self.folders)
+                                    ],merge:true)
                                     
                                     
                                     self.isShowing.toggle()
@@ -128,11 +129,11 @@ extension View {
 
     func textFieldAlert(isShowing: Binding<Bool>,
                         text: Binding<String>,
-                        folders: Binding<[Folder]>) -> some View {
+                        folders: Binding<[Folder]>, uid: String) -> some View {
         TextFieldAlert(isShowing: isShowing,
                        text: text,
                        presenting: self,
-                       folders: folders)
+                       folders: folders, uid: uid)
     }
 
 }

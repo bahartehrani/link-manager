@@ -8,59 +8,12 @@
 import UIKit
 import Firebase
 
-var uid : String = ""
-var folders : [Folder] = []
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
-        Auth.auth().signInAnonymously() { (authResult, error) in
-            guard let user = authResult?.user else { return }
-            _ = user.isAnonymous  // true
-            uid = user.uid
-            print(uid)
-            
-            Firestore.firestore().collection("users").document(uid).getDocument { (doc,error) in
-                if let err = error {
-                    print(err)
-                } else {
-                    let directFolderData = doc?.get("folders") as? [String : [String]] ?? [:]
-                    if directFolderData == [:] {
-                        Firestore.firestore().collection("users").document(uid).setData([
-                            "folders" : [:]
-                        ],merge:true)
-                    }
-                    
-                    for (fName,folderLinks) in directFolderData {
-                        
-                        var folderClassLinks : [Link] = []
-                        
-                        for linkTotal in folderLinks {
-                            let component_link = linkTotal.components(separatedBy: ",")
-                            let link = Link(name: component_link[0], link: component_link[1])
-                            
-                            folderClassLinks.append(link)
-                        }
-                        folders.append(Folder(name: fName, links: folderClassLinks))
-                    }
-                    
-                }
-                
-            }
-            
-            
-            
-            Firestore.firestore().collection("users").document(uid).setData([
-                "uid" : uid
-            ],merge:true)
-        }
-        
         
         return true
     }
