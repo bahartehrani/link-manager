@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
     
     @State var createFolderPopUp = false
     //@State var folders : [Folder] = []
     
-    @State var folders : [Folder] = [Folder(name: "test1"),Folder(name: "test2"),Folder(name: "test3"),Folder(name: "test4"),Folder(name: "test5"),Folder(name: "test6"),Folder(name: "test7")]
+    @State var folders : [Folder] = [Folder(name: "test1"),Folder(name: "test2"),Folder(name: "test3"),Folder(name: "test4")]
+    
+    @State var newFolderName : String = ""
+    @State var didSaveNewFolder : Bool = false
     
     var body: some View {
         VStack {
@@ -47,8 +51,10 @@ struct ContentView: View {
                         
                 }
                 
-            }
+            }.blur(radius: self.createFolderPopUp ? 16 : 0)
         }
+        .textFieldAlert(isShowing: self.$createFolderPopUp, text: self.$newFolderName, folders: self.$folders)
+        
     }
 }
 
