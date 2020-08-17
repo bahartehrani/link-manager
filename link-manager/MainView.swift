@@ -17,6 +17,7 @@ struct MainView : View {
     @Binding var uid : String
     @Binding var folders : [Folder]
     @Binding var selectedFolder : Folder
+    @Binding var index : Int
     
     
     //@State var folders : [Folder] = [Folder(name: "test1"),Folder(name: "test2"),Folder(name: "test3"),Folder(name: "test4")]
@@ -67,6 +68,9 @@ struct MainView : View {
                 MiniFolderView(folder: folder)
                 .onTapGesture {
                     self.showFolderView.toggle()
+                    if let idx = self.folders.firstIndex(of: folder) {
+                        self.index = idx
+                    }
                     self.selectedFolder = folder
                 }
             }.blur(radius: self.createFolderPopUp ? 20 : 0)

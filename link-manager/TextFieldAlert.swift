@@ -143,17 +143,15 @@ struct TextFieldAlertMultiLine<Presenting>: View where Presenting: View {
                                     
                                     print(self.selectedFolder.links)
                                     
-                                    if let idx = self.folders.firstIndex(of: Folder(name: self.selectedFolder.name, links: [])) {
+                                    if let _ = self.folders.firstIndex(of: Folder(name: self.selectedFolder.name, links: [])) {
                                         
                                         let linkvar = Link(name: self.textName, link: self.textLink)
                                         self.selectedFolder.links.append(linkvar)
                                         print(self.selectedFolder.links)
                                         
-                                        self.folders[idx].links.append(linkvar)
-                                        print(self.folders[idx].links)
-                                        self.selectedFolder.links = self.folders[idx].links
+                                        
                                         print("REEEE")
-                                        print(self.selectedFolder.links)
+                                        
                                     } 
                                     
                                     Firestore.firestore().collection("users").document(self.uid).setData([
