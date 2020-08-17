@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MobileCoreServices
 
 struct FolderView: View {
     
@@ -45,10 +46,20 @@ struct FolderView: View {
             .padding(.horizontal,36)
             
             List(selectedFolder.links) { link in
-                VStack {
-                    Text(link.name)
+                HStack {
                     
-                    Text(link.link)
+                    Spacer()
+                    
+                    VStack {
+                        Text("Name: " + link.name)
+                        
+                        Text("URL: " + link.link)
+                    }
+                    
+                    Spacer()
+                }.onTapGesture(count: 2) {
+                    UIPasteboard.general.setValue(link.link,
+                        forPasteboardType: kUTTypePlainText as String)
                 }
             }
         }.textFieldAlertMultiLine(isShowing: self.$showAddLink, textName: self.$newLinkName, textLink: self.$newLinkLink, selectedFolder: self.$selectedFolder, uid: self.$uid, folders: self.$folders)

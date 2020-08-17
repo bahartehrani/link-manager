@@ -149,7 +149,6 @@ struct TextFieldAlertMultiLine<Presenting>: View where Presenting: View {
                                         self.selectedFolder.links.append(linkvar)
                                         print(self.selectedFolder.links)
                                         
-                                        
                                         print("REEEE")
                                         
                                     } 
