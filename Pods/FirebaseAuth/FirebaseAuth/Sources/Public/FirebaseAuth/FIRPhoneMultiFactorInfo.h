@@ -14,19 +14,26 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
 #import <Foundation/Foundation.h>
 
+#import "FIRMultiFactorInfo.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-/** @class FIRMultiFactorSession
-    @brief Opaque object that identifies the current session to enroll a second factor or to
-        complete sign in when previously enrolled.
- */
-NS_SWIFT_NAME(MultiFactorSession)
-@interface FIRMultiFactorSession : NSObject
+/** @class FIRPhoneMultiFactorInfo
+    @brief Extends the FIRMultiFactorInfo class for phone number second factors.
+        The identifier of this second factor is "phone".
+*/
+NS_SWIFT_NAME(PhoneMultiFactorInfo)
+@interface FIRPhoneMultiFactorInfo : FIRMultiFactorInfo
+
+/**
+   @brief This is the phone number associated with the current second factor.
+*/
+@property(nonatomic, readonly, nonnull) NSString *phoneNumber;
 
 @end
 

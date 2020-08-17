@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Folder : Hashable {
+struct Folder : Hashable, Identifiable {
     static func == (lhs: Folder, rhs: Folder) -> Bool {
         return lhs.name == rhs.name
     }
@@ -33,7 +33,7 @@ struct Folder : Hashable {
     
 }
 
-struct Link : Hashable {
+struct Link : Hashable, Identifiable {
     static func == (lhs: Link, rhs: Link) -> Bool {
         return lhs.link == rhs.link
     }

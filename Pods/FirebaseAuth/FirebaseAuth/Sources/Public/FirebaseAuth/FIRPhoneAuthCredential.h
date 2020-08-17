@@ -1,11 +1,11 @@
 /*
- * Copyright 2019 Google
+ * Copyright 2017 Google
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
 #import <Foundation/Foundation.h>
 
-#import "FIRMultiFactorInfo.h"
+#import "FIRAuthCredential.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** @class FIRPhoneMultiFactorInfo
-    @brief Extends the FIRMultiFactorInfo class for phone number second factors.
-        The identifier of this second factor is "phone".
-*/
-NS_SWIFT_NAME(PhoneMultiFactorInfo)
-@interface FIRPhoneMultiFactorInfo : FIRMultiFactorInfo
+/** @class FIRPhoneAuthCredential
+    @brief Implementation of FIRAuthCredential for Phone Auth credentials.
+ */
+NS_SWIFT_NAME(PhoneAuthCredential)
+@interface FIRPhoneAuthCredential : FIRAuthCredential <NSSecureCoding>
 
-/**
-   @brief This is the phone number associated with the current second factor.
-*/
-@property(nonatomic, readonly, nonnull) NSString *phoneNumber;
+/** @fn init
+    @brief This class is not supposed to be instantiated directly.
+ */
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 

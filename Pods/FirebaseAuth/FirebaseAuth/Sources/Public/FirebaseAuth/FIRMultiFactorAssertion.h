@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
 #import <Foundation/Foundation.h>
 
-#import "FIRMultiFactorAssertion.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-/** @class FIRPhoneMultiFactorAssertion
-    @brief The subclass of base class FIRMultiFactorAssertion, used to assert ownership of a phone
-        second factor.
+/** @class FIRMultiFactorAssertion
+    @brief The base class for asserting ownership of a second factor. This is equivalent to the
+   AuthCredential class.
 */
-NS_SWIFT_NAME(PhoneMultiFactorAssertion)
-@interface FIRPhoneMultiFactorAssertion : FIRMultiFactorAssertion
+NS_SWIFT_NAME(MultiFactorAssertion)
+@interface FIRMultiFactorAssertion : NSObject
+
+/**
+   @brief The second factor identifier for this opaque object asserting a second factor.
+*/
+@property(nonatomic, readonly, nonnull) NSString *factorID;
 
 @end
 

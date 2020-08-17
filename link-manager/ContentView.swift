@@ -10,56 +10,29 @@ import Firebase
 
 struct ContentView: View {
     
-    @State var createFolderPopUp = false
     @ObservedObject var foldersViewModel = FoldersViewModel()
-    @State var folders : [Folder] = []
     
-    //@State var folders : [Folder] = [Folder(name: "test1"),Folder(name: "test2"),Folder(name: "test3"),Folder(name: "test4")]
+    @State var showFolderView = false
+    @State var selectedFolder : Folder = Folder(name: "")
     
-    @State var newFolderName : String = ""
-    @State var didSaveNewFolder : Bool = false
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Text("link manager")
-                    .font(.system(size: 24, weight: .semibold))
-                
-                Spacer()
-                
-                Image(systemName: "plus.circle")
-                    .font(.system(size: 24))
-                    .onTapGesture(perform: {
-                        self.createFolderPopUp.toggle()
-                    }
-                    )
-            }.padding(.vertical,24)
-            .padding(.horizontal,36)
-            
-            ScrollView(.vertical) {
-                
-                UIGrid(columns: 2, list: self.foldersViewModel.folders) { folder in
-                    
-                    Image(systemName: "folder")
-                        .resizable()
-                        .font(.system(size: UIScreen.main.bounds.width / 3))
-                    .overlay(
-                        Text(folder.name)
-                            .padding(.top,8)
-                    )
-                        .padding(.horizontal)
-                        .padding(.vertical,24)
-                        
-                }
-                    
-            }.blur(radius: self.createFolderPopUp ? 16 : 0)
-        }
-            .onAppear() {
-                self.foldersViewModel.fetchData()
+    var body : some View {
+        
+        Group {
+            if !self.showFolderView {
+                MainView(showFolderView: self.$showFolderView, uid: self .foldersViewModel.uid, folders: self.$foldersViewModel.folders, selectedFolder: self.$selectedFolder)
             }
-        .textFieldAlert(isShowing: self.$createFolderPopUp, text: self.$newFolderName, folders: self.$folders, uid: self.foldersViewModel.uid)
+            else {
+                FolderView(showFolderView: self.$showFolderView, selectedFolder: self.$selectedFolder)
+            }
+        }.onAppear() {
+            
+            self.foldersViewModel.fetchData()
+            
+            print("appeared")
+        }
         
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

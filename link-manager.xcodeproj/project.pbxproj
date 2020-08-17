@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0102A7E924EB0D800071CDF1 /* FoldersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102A7E824EB0D800071CDF1 /* FoldersViewModel.swift */; };
+		0102A7EB24EB12090071CDF1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102A7EA24EB12090071CDF1 /* MainView.swift */; };
+		01163B5224EB133E001679B1 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01163B5124EB133E001679B1 /* FolderView.swift */; };
+		01163B5524EB1C15001679B1 /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 01163B5424EB1C15001679B1 /* QGrid */; };
 		012AA48924E9A1C300B6A802 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AA48824E9A1C300B6A802 /* Folder.swift */; };
 		012AA48B24E9A1E500B6A802 /* SavedLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AA48A24E9A1E500B6A802 /* SavedLink.swift */; };
 		012AA48D24E9A5C000B6A802 /* UIGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AA48C24E9A5C000B6A802 /* UIGrid.swift */; };
@@ -23,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		0102A7E824EB0D800071CDF1 /* FoldersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewModel.swift; sourceTree = "<group>"; };
+		0102A7EA24EB12090071CDF1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		01163B5124EB133E001679B1 /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		012AA48824E9A1C300B6A802 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		012AA48A24E9A1E500B6A802 /* SavedLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLink.swift; sourceTree = "<group>"; };
 		012AA48C24E9A5C000B6A802 /* UIGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGrid.swift; sourceTree = "<group>"; };
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01163B5524EB1C15001679B1 /* QGrid in Frameworks */,
 				0FE9CE070B8CFDBA47422C48 /* Pods_link_manager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +82,8 @@
 				01B27CCC24E996C000BC942E /* AppDelegate.swift */,
 				01B27CCE24E996C000BC942E /* SceneDelegate.swift */,
 				01B27CD024E996C000BC942E /* ContentView.swift */,
+				0102A7EA24EB12090071CDF1 /* MainView.swift */,
+				01163B5124EB133E001679B1 /* FolderView.swift */,
 				012AA48C24E9A5C000B6A802 /* UIGrid.swift */,
 				012AA48824E9A1C300B6A802 /* Folder.swift */,
 				0102A7E824EB0D800071CDF1 /* FoldersViewModel.swift */,
@@ -132,6 +140,9 @@
 			dependencies = (
 			);
 			name = "link-manager";
+			packageProductDependencies = (
+				01163B5424EB1C15001679B1 /* QGrid */,
+			);
 			productName = "link-manager";
 			productReference = 01B27CC924E996C000BC942E /* link-manager.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +170,9 @@
 				Base,
 			);
 			mainGroup = 01B27CC024E996C000BC942E;
+			packageReferences = (
+				01163B5324EB1C15001679B1 /* XCRemoteSwiftPackageReference "QGrid" */,
+			);
 			productRefGroup = 01B27CCA24E996C000BC942E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -230,12 +244,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				012AA48B24E9A1E500B6A802 /* SavedLink.swift in Sources */,
+				0102A7EB24EB12090071CDF1 /* MainView.swift in Sources */,
 				012AA48D24E9A5C000B6A802 /* UIGrid.swift in Sources */,
 				01B27CCD24E996C000BC942E /* AppDelegate.swift in Sources */,
 				01B27CCF24E996C000BC942E /* SceneDelegate.swift in Sources */,
 				01B27CD124E996C000BC942E /* ContentView.swift in Sources */,
 				012AA48924E9A1C300B6A802 /* Folder.swift in Sources */,
 				0102A7E924EB0D800071CDF1 /* FoldersViewModel.swift in Sources */,
+				01163B5224EB133E001679B1 /* FolderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +447,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01163B5324EB1C15001679B1 /* XCRemoteSwiftPackageReference "QGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Q-Mobile/QGrid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01163B5424EB1C15001679B1 /* QGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01163B5324EB1C15001679B1 /* XCRemoteSwiftPackageReference "QGrid" */;
+			productName = QGrid;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 01B27CC124E996C000BC942E /* Project object */;
 }

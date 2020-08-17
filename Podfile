@@ -10,5 +10,6 @@ target 'link-manager' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
 	pod 'Firebase/Storage'
+	pod 'WaterfallGrid', '~> 0.4.0'
 
 end

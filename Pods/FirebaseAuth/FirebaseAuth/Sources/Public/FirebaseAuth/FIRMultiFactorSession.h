@@ -1,11 +1,11 @@
 /*
- * Copyright 2017 Google
+ * Copyright 2019 Google
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
+#import <TargetConditionals.h>
 #if TARGET_OS_IOS
 
 #import <Foundation/Foundation.h>
 
-#import "FIRAuthCredential.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-/** @class FIRPhoneAuthCredential
-    @brief Implementation of FIRAuthCredential for Phone Auth credentials.
+/** @class FIRMultiFactorSession
+    @brief Opaque object that identifies the current session to enroll a second factor or to
+        complete sign in when previously enrolled.
  */
-NS_SWIFT_NAME(PhoneAuthCredential)
-@interface FIRPhoneAuthCredential : FIRAuthCredential <NSSecureCoding>
-
-/** @fn init
-    @brief This class is not supposed to be instantiated directly.
- */
-- (instancetype)init NS_UNAVAILABLE;
+NS_SWIFT_NAME(MultiFactorSession)
+@interface FIRMultiFactorSession : NSObject
 
 @end
 

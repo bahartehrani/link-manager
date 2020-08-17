@@ -15,18 +15,17 @@ class FoldersViewModel: ObservableObject {
   private var db = Firestore.firestore()
     
         func fetchData() {
-            var uid = ""
             Auth.auth().signInAnonymously() { (authResult, error) in
                 guard let user = authResult?.user else { return }
                 _ = user.isAnonymous  // true
-                uid = user.uid
-                print(uid)
+                self.uid = user.uid
+                print(self.uid)
                 
-                Firestore.firestore().collection("users").document(uid).setData([
-                    "uid" : uid
+                Firestore.firestore().collection("users").document(self.uid).setData([
+                    "uid" : self.uid
                 ],merge:true)
                 
-                Firestore.firestore().collection("users").document(uid).addSnapshotListener { (doc,error) in
+                Firestore.firestore().collection("users").document(self.uid).addSnapshotListener { (doc,error) in
                     if let err = error {
                         print(err)
                     } else {
@@ -34,7 +33,7 @@ class FoldersViewModel: ObservableObject {
                         
                         print(directFolderData)
                         if directFolderData == [:] {
-                            Firestore.firestore().collection("users").document(uid).setData([
+                            Firestore.firestore().collection("users").document(self.uid).setData([
                                 "folders" : [:]
                             ],merge:true)
                         }
@@ -51,6 +50,8 @@ class FoldersViewModel: ObservableObject {
                             }
                             self.folders.append(Folder(name: fName, links: folderClassLinks))
                         }
+                        
+                        print(self.folders)
                         
                     }
                 
